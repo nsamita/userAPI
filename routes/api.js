@@ -10,16 +10,16 @@ require('dotenv').config();
 
 router.get('/user/', userController.welcome);
 
-router.post('/user/signup', checkJWT, userController.signup);
+router.post('/user/signup', checkJWT, userController.signUp);
 
 router.post('/user/login', userController.login);
 
-router.get('/developer/getUsers', checkJWT, userController.fetchUsers);
+router.get('/developer/getUsers', checkJWT, userController.getUsers);
 
-router.get('/developer/getUser/:id/role', checkJWT, DeveloperController.fetchSingleUser);
+router.get('/developer/getUser/:id', checkJWT, userController.getSingleUser);
 
-router.post('/developer/updateUser/:id/role', checkJWT, userController.updateUserAccount);
+router.post('/developer/updateUser/:id', checkJWT, userController.updateUserAccount);
 
-router.delete('/developer/deleteUser/:id/role', checkJWT, userController.deleteUserAccount);
+//router.delete('/developer/deleteUser/:id', checkJWT, userController.deleteUserAccount);
 
 module.exports = router;

@@ -12,16 +12,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(helmet());
-/* 
+
 let api = require('./routes/api');
 
 app.use('/api', api);
-*/
 
+/*
 app.get('*', (req, res) => res.status(200).send({
       message: 'Welcome to the default API route',
     }));
-
+    */
 
 // set port
 const port = process.env.PORT || 5200;
