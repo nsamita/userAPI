@@ -1,9 +1,9 @@
-const express = require('express');  // setup express application
+var express = require('express');  // setup express application
+var app = express();
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
-const app = express();
 
 app.use(cors());
 
