@@ -10,6 +10,8 @@ const User = require('../middlewares/models').User;
             }
 
             static signUp(req, res) {
+                //res.json({message: "Sign Up"});
+                console.log(`Sign up`);
                 const { fistname, lastname, username, role, email, password, address, phone } = req.body
                 return User
                     .create({
@@ -29,6 +31,7 @@ const User = require('../middlewares/models').User;
                 }))
             }
             static login(req, res){
+                console.log(`login`);
                 try{
                     let { email,password } = req.body;
                     User.findAll({
@@ -36,14 +39,16 @@ const User = require('../middlewares/models').User;
                     })
                         .then(user=>{
                             if(user.length == 0){
-                                res.status(400).json({message: "Sorry, developer does not exist."});
+                                res.status(400).json({message: "Sorry, user does not exist."});
                             }else{
                                 var passwordIsValid = bcrypt.compareSync(req.body.password, user[0].dataValues.password.trim());
         
                                 if (passwordIsValid){
-                                    var devDetails = {
+                                    var userDetails = {
                                         id: user[0].dataValues.id,
-                                        fullname: user[0].dataValues.fullname,
+                                        role: user[0].dataValues.role,
+                                        firstname: user[0].dataValues.firstname,
+                                        lastname: user[0].dataValues.lastname,
                                         email: user[0].dataValues.email,
                                         is_auth: 'user'
                                     }
