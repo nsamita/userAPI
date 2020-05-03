@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- 'stable'
+cache: 
+directories:
+- node_modules
+services:
+  - postgresql
+before_script:
+  - npm install
+  - psql -c 'create database your_database_name;' -U postgres
+script:
+- npm run test
+notifications:
+  email: false
