@@ -99,8 +99,8 @@ const User = require('../middlewares/models').User;
             static getSingleUser(req, res){
                 try{
                     let user_id = req.params.id;
-                    let role = req.param.role;
-                    School.findAll({
+                    //let role = req.param.role;
+                    User.findAll({
                         attributes: ['name','username','role','email','address','phone'],
                         where:{id: user_id}
                     })
@@ -122,7 +122,7 @@ const User = require('../middlewares/models').User;
                     var base64 = req.file.buffer.toString("base64");
                     var password = bcrypt.hashSync('123456', 10);
         
-                    let updateSchool = {
+                    let updateUser = {
                         firstname: firstname,
                         lastname: lastname,
                         username: username,
@@ -132,13 +132,13 @@ const User = require('../middlewares/models').User;
                         address: address,
                         password: password,
                     }
-                    User.update(updateSchool,{
+                    User.update(updateUser,{
                         where: {
                             id: req.params.id
                         }
                     })
                         .then(response=>{
-                            res.status(200).json({success:true, message: "School account updated successfully."})
+                            res.status(200).json({success:true, message: "User account updated successfully."})
                         })
                         .then(err=>res.json({error: err}));
                 }catch (e) {
