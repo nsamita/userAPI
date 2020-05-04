@@ -8,7 +8,7 @@ const userController = require('../controller/userController');
 
 require('dotenv').config();
 
-router.get('/user/', userController.welcome);
+//router.get(userController.welcome);
 
 //router.post('/user/signup', userController.signUp);
 
