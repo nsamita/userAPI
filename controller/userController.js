@@ -239,7 +239,7 @@ const User = require('../middlewares/models').User;
                                     where:{id: id}
                                 })
                                     .then(deleted => {
-                                        res.status(200).json({success: true, message: "School account deleted successfully"});
+                                        res.status(200).json({success: true, message: "User account deleted successfully"});
                                     });
                             }else{
                                 res.status(404).json("Sorry, operation could not be completed.");
