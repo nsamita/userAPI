@@ -8,7 +8,7 @@ const User = require('../middlewares/models').User;
             static welcome(req,res){
                 res.json({message: "Welcome to  user endpoint"});
             }
-            /*
+            
             static signUp(req, res) {
                 res.json({message: "Sign Up"});
                 console.log(`Sign up`);
@@ -29,7 +29,7 @@ const User = require('../middlewares/models').User;
                     message: 'User successfully created',
                     userData
                 }))
-            }*/
+            }
             static login(req, res){
                 console.log(`login`);
                 try{
@@ -188,6 +188,7 @@ const User = require('../middlewares/models').User;
                     res.sendStatus(500);
                 }
             }
+
         }
             
         module.exports = userController;

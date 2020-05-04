@@ -33,8 +33,8 @@ module.exports ={
 	},
 
 	async transform(name){
-		var fullname = name;
-		var splitName = fullname.split(' ');
+		var firstname = name;
+		var splitName = firstname.split(' ');
 		var newName = "";
 
 		for (var i = 0; i < splitName.length; i++) {
