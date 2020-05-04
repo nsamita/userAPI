@@ -16,7 +16,7 @@ The API is for user database,  in which provides the user endpoint and also conn
   * [User Overview](#user-overview)
   * [User Object](#user-object)
 * [API](#API)
-  * [Requests and Responses](#request-response)
+  * [Requests and Responses](#requests-and-responses)
     * [GET users](#get-users)
     * [GET user by id](#get-user-by-id)
     * [POST update user](#post-update-user)
@@ -35,6 +35,10 @@ The API is for user database,  in which provides the user endpoint and also conn
  If you look at the header, you should see that the content-type is json:
  
  `Content-Type: application/json`
+ 
+ ### Authentication
+ 
+ To be upload
  
  ## User
  
