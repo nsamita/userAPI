@@ -44,6 +44,40 @@ const User = require('../middlewares/models').User;
                                 console.log(`login2`);
                                 console.log('pass in data: %s',user[0].dataValues.password.trim());
                                 console.log('pass in body: %s', req.body.password);
+                                var passwordIsValid = bcrypt.compareSync(req.body.password, user[0].dataValues.password.trim());
+        
+                                if (passwordIsValid){
+                                    console.log(`login3`);
+                                    var userDetails = {
+                                        id: user[0].dataValues.id,
+                                        role: user[0].dataValues.role,
+                                        firstname: user[0].dataValues.firstname,
+                                        lastname: user[0].dataValues.lastname,
+                                        email: user[0].dataValues.email,
+                                        is_auth: 'user'
+                                    }
+                                    var token = jwt.sign({
+                                        user: userDetails
+                                    }, secret, {
+                                        expiresIn: '10m'
+                                    });
+                                    console.log(token);
+                                    res.status(200).json({
+                                        success: true,
+                                        user: userDetails,
+                                        message: "Login successful. Token generated successfully.",
+                                        token: token
+                                    });
+                                }else{
+                                    console.log(`login4`);
+                                    res.status(401).json({
+                                        success: false,
+                                        message: 'Authentication failed. Wrong password'
+                                    });
+                                }
+                            }
+                        })
+                        /*
                                 if(req.body.password == user[0].dataValues.password.trim()){
                                     console.log(`login3`);
                                     var userDetails = {
@@ -75,7 +109,7 @@ const User = require('../middlewares/models').User;
                                 }
                             }
                         })
-                                /*
+                                
                                 var passwordIsValid = bcrypt.compareSync(req.body.password, user[0].dataValues.password.trim());
         
                                 if (passwordIsValid){
@@ -158,12 +192,16 @@ const User = require('../middlewares/models').User;
                 }
             }
             static updateUserAccount(req, res){
+                console.log(`update`);
                 try{
-                    const {firstname, lastname, username, role, email, phone, address,updatedAt} = req.body;
-        
-                    var base64 = req.file.buffer.toString("base64");
-                    var password = bcrypt.hashSync('12345', 10);
-        
+                    const {firstname, lastname, username, role, email, phone, address, password} = req.body;
+                    //console.log(`update2`);
+
+                    //var base64 = req.file.buffer.toString("base64");
+                    //var password = bcrypt.hashSync('12345', 10);
+
+                    //console.log(`update3`);
+
                     let updateUser = {
                         firstname: firstname,
                         lastname: lastname,
@@ -173,22 +211,45 @@ const User = require('../middlewares/models').User;
                         phone: phone,
                         address: address,
                         password: password,
-                        updatedAt:updatedAt
+                        //updatedAt:updatedAt
                     }
+                    //console.log(`update4`);
                     User.update(updateUser,{
-                        where: {
-                            id: req.params.id
-                        }
+                        where: {id: req.params.id}
                     })
                         .then(response=>{
                             res.status(200).json({success:true, message: "User account updated successfully."})
+                            console.log(`succesfully`)
                         })
                         .then(err=>res.json({error: err}));
                 }catch (e) {
                     res.sendStatus(500);
                 }
             }
-
+            static deleteUserAccount(req, res){
+                try{
+                    let id = req.params.id;
+        
+                    User.findAll({
+                        where: {id: id}
+                    })
+                        .then(result=>{
+                            if(result.length == 1){
+                                User.destroy({
+                                    where:{id: id}
+                                })
+                                    .then(deleted => {
+                                        res.status(200).json({success: true, message: "School account deleted successfully"});
+                                    });
+                            }else{
+                                res.status(404).json("Sorry, operation could not be completed.");
+                            }
+                        });
+                }catch (e) {
+                    res.sendStatus(500);
+                }
+            }
+        
         }
             
         module.exports = userController;
