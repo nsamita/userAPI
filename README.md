@@ -21,7 +21,8 @@ The API is for user database,  in which provides the user endpoint and also conn
     * [GET user by id](#get-user-by-id)
     * [POST update user](#post-update-user)
     * [Delete user](#delete-user)
-    
+
+## General info
  ### Hello World
  Our sos user endpoint is located at:
  
@@ -48,7 +49,7 @@ GET     | /api/user/gerUser/:id  | Get a user with a paticular `id`
 POST     | /api/user/updateUser/:id  | Update a user with a paticular `id`
 DELETE    | /api/user/deleteUser/:id | Delete a user with a paticular `id`  
 
-### The User Object
+### User Object
 
 #### Attributes
 
