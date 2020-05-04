@@ -7,8 +7,10 @@ module.exports = function(req, res, next) {
   let token = req.headers["authorization"];
 
   if (token) {
+    console.log(`errrrrrrrr`);
     jwt.verify(token, secret, function(err, decoded) {
       if (err) {
+        console.log(`errrrrr`);
         res.json({
           success: false,
           message: 'Failed to authenticate token'

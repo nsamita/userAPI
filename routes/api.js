@@ -10,13 +10,13 @@ require('dotenv').config();
 
 router.get('/user/', userController.welcome);
 
-router.post('/user/signup', checkJWT, userController.signUp);
+/*router.post('/user/signup', checkJWT, userController.signUp);*/
 
 router.post('/user/login', userController.login);
 
-router.get('/user/getUsers', checkJWT, userController.getUsers);
+router.get('/user/getUsers', userController.getUsers);
 
-router.get('/user/getUser/:id', checkJWT, userController.getSingleUser);
+router.get('/user/getUser/:id', userController.getSingleUser);
 
 router.post('/user/updateUser/:id', checkJWT, userController.updateUserAccount);
 
