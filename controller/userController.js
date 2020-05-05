@@ -8,14 +8,26 @@ const User = require('../middlewares/models').User;
             static welcome(req,res){
                 res.json({message: "Welcome to  user endpoint"});
             }
-            
+            /*
             static signUp(req, res) {
                 res.json({message: "Sign Up"});
                 console.log(`Sign up`);
-                const { fistname, lastname, username, email, password, address, phone, role } = req.body
-                return User
+                const { firstname, lastname, username, email, password, address, phone, role } = req.body
+                
+                let createNewUser = {
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username,
+                    email: email,
+                    password: password,
+                    address: address, 
+                    phone: phone,
+                    role: role
+                }
+                User.create(createNewUser)
+                /*return User
                     .create({
-                    fistname,
+                    firstname,
                     lastname,
                     username,
                     email,
@@ -24,12 +36,20 @@ const User = require('../middlewares/models').User;
                     phone,
                     role
                 })
-                    .then(userData => res.status(201).send({
-                    success: true,
-                    message: 'User successfully created',
-                    userData
-                }))
+                .then(userData=>{
+                    res.status(201).json({message: "User Created Successfully.",User: userData});
+                })
+                .then(err=>res.json({error: err}));
+/*
+                .then(userData => {
+                    res.status(201).json({
+                        success: true,
+                        message: 'User successfully created',
+                        });
+                    }).catch(err=> res.json({error: err}))
+                 
             }
+
             static login(req, res){
                 console.log(`login`);
                 try{
@@ -143,13 +163,48 @@ const User = require('../middlewares/models').User;
                                 }
                             }
                         })
-                        */
+                        
                         .catch (e=>{
                         res.status(500);
                     })
         
                 }catch (e) {
                     res.send(500);
+                }
+            }*/
+            static async createUser(req, res){
+                try{
+                    const { firstname, lastname, username, email, password, address, phone, role } = req.body
+        
+                    await User.findAll({
+                        where: {email:email}
+                    })
+                        .then(result=>{
+                            if(result.length > 0){
+                                res.status(203).json({success: false, message: "Sorry, this email has been created the account."})
+                            }else{
+                                let createNewUser = {
+                                    firstname: firstname,
+                                    lastname: lastname,
+                                    username: username,
+                                    email: email,
+                                    password: password,
+                                    address: address, 
+                                    phone: phone,
+                                    role: role
+                                }
+                                User.create(createNewUser)
+                                    .then(data=>{
+                                        res.status(201).json({success: true, message: "User added successfully"});
+                                    })
+                                    .catch(err=>res.json({error: err}));
+                            }
+                        })
+                        .then(err=>{
+                            res.status(500);
+                        })
+                }catch (e) {
+                    res.sendStatus(500);
                 }
             }
             static getUsers(req, res){
@@ -191,16 +246,18 @@ const User = require('../middlewares/models').User;
                     res.send(500);
                 }
             }
+            /*
             static updateUserAccount(req, res){
                 console.log(`update`);
                 try{
                     const {firstname, lastname, username, role, email, phone, address, password} = req.body;
                     //console.log(`update2`);
+                    console.log(`password: %s`, password);
 
                     //var base64 = req.file.buffer.toString("base64");
-                    //var password = bcrypt.hashSync('12345', 10);
+                    var passwordd = bcrypt.hashSync('123456', 10);
 
-                    //console.log(`update3`);
+                    console.log(`passwordd: %s`, passwordd);
 
                     let updateUser = {
                         firstname: firstname,
@@ -210,7 +267,7 @@ const User = require('../middlewares/models').User;
                         email: email,
                         phone: phone,
                         address: address,
-                        password: password,
+                        password: passwordd,
                         //updatedAt:updatedAt
                     }
                     //console.log(`update4`);
@@ -222,6 +279,37 @@ const User = require('../middlewares/models').User;
                             console.log(`succesfully`)
                         })
                         .then(err=>res.json({error: err}));
+                }catch (e) {
+                    res.sendStatus(500);
+                }
+            }*/
+            static async updateUser(req, res){
+                try{
+                    const {firstname, lastname, username, role, email, phone, address, password} = req.body;
+                    console.log(`password: %s`, password);
+                    let temp = password;
+                    let passwordd = bcrypt.hashSync(temp, 10);
+                    
+                    let updateUser = {
+                        firstname: firstname,
+                        lastname: lastname,
+                        username: username,
+                        role: role,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        password: passwordd,
+                    }
+                    await User.update(updateUser,{
+                        where: {
+                            id: req.params.id
+                        }
+                    })
+                        .then(response=>{
+                            res.status(200).json({success:true, message: "User updated successfully."})
+                        })
+                        .then(err=>res.json({error: err}));
+        
                 }catch (e) {
                     res.sendStatus(500);
                 }
