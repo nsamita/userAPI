@@ -19,7 +19,7 @@ The API is for user database,  in which provides the user endpoint and also conn
   * [Requests and Responses](#requests-and-responses)
     * [GET users](#get-users)
     * [GET user by id](#get-user-by-id)
-    * [POST update user](#post-update-user)
+    * [PATCH update user](#post-update-user)
     * [Delete user](#delete-user)
 
 ## General info
@@ -43,7 +43,7 @@ The API is for user database,  in which provides the user endpoint and also conn
 -------- | ------------------------ | -------------
 GET      | /api/user/getUsers       | Get all users 
 GET      | /api/user/getUser/:id    | Get a user with a paticular `id`
-POST     | /api/user/updateUser/:id | Update a user with a paticular `id`
+PATCH     | /api/user/updateUser/:id | Update a user with a paticular `id`
 DELETE   | /api/user/deleteUser/:id | Delete a user with a paticular `id` 
  
  ## User
@@ -57,7 +57,7 @@ Method  | Endpoint                 | Description
 POST    | /api/user/signup         | Create a user
 GET     | /api/user/getUsers       | Get all users 
 GET     | /api/user/getUser/:id    | Get a user with a paticular `id`
-POST    | /api/user/updateUser/:id | Update a user with a paticular `id`
+PATCH   | /api/user/updateUser/:id | Update a user with a paticular `id`
 DELETE  | /api/user/deleteUser/:id | Delete a user with a paticular `id`  
 
 ### User Object
