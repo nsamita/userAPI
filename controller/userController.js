@@ -204,6 +204,7 @@ const User = require('../middlewares/models').User;
                             res.status(500);
                         })
                 }catch (e) {
+                    
                     res.sendStatus(500);
                 }
             }
