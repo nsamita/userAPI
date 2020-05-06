@@ -6,7 +6,7 @@ const User = require('../middlewares/models').User;
 
         class userController {
             static welcome(req,res){
-                res.json("Welcome to  user endpoint");
+                res.send("Welcome to  user endpoint");
             }
             /*
             static signUp(req, res) {
