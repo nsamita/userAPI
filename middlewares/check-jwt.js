@@ -29,8 +29,8 @@ module.exports = function(req, res, next) {
           message: 'Failed to authenticate token'
         });
       } 
-      console.log(`decoded: %s`, decoded.role);
-      console.log(`decoded: %s`, decoded.id);
+      console.log(`decoded role: %s`, decoded.role);
+      console.log(`decoded id: %s`, decoded.id);
       if(decoded.role === undefined || decoded.role !== 'admin' || decoded.id === undefined){
         return res.status(403).json({
           success: false,
