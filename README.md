@@ -157,7 +157,7 @@ Returns a user witht given id (e.g. id = 4):
     ]
 }
 ```
-#### POST update user
+#### PATCH update user
 Update the user account with the particular id
 
 __Endpoint:__
