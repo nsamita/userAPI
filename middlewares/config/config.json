@@ -17,7 +17,11 @@
   },
  
   "production": {
+    "username": "postgres",
+    "password": "12345",
+    "database": "userDB",
     "use_env_variable": "DATABASE_URL",
+    "host": "127.0.0.1",
     "dialect": "postgres",
     "operatorsAliases": false
   }
