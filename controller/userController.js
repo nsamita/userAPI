@@ -173,7 +173,7 @@ const User = require('../middlewares/models').User;
                 }
             }*/
             static async createUser(req, res){
-                try{
+                
                     const { firstname, lastname, username, email, password, address, phone, role } = req.body
         
                     await User.findAll({
@@ -203,10 +203,7 @@ const User = require('../middlewares/models').User;
                         .then(err=>{
                             res.status(500);
                         })
-                }catch (e) {
-                    
-                    res.sendStatus(500);
-                }
+                
             }
             static getUsers(req, res){
                 console.log(`getUsers`);
