@@ -30,8 +30,8 @@ module.exports = function(req, res, next) {
         });
       } 
       console.log(`decoded role: %s`, decoded.role);
-      console.log(`decoded id: %s`, decoded.id);
-      if(decoded.role === undefined || decoded.role !== 'admin' || decoded.id === undefined){
+      console.log(`decoded id: %s`, decoded.user_id);
+      if(decoded.role === undefined || decoded.role !== 'admin' || decoded.user_id === undefined){
         return res.status(403).json({
           success: false,
           message: 'Forbidden'
