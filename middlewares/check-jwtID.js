@@ -32,7 +32,7 @@ module.exports = function(req, res, next) {
       console.log(`decoded role: %s`, decoded.role);
       console.log(`decoded id: %s`, decoded.user_id);
       console.log(`decoded id: %d`,req.params.id);
-      if(decoded.user_id === req.params.id || decoded.role === 'admin'){
+      if(decoded.user_id === req.params.id){
         req.decoded = decoded;
         next();
       }
