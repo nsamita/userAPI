@@ -38,7 +38,13 @@ The API is for user database,  in which provides the user endpoint and also conn
  
  ### Authentication
  
- To be upload
+ SOS Authentication service will provide the JWT token for each request.
+ Method  | Endpoint                 | Description
+-------- | ------------------------ | -------------
+GET      | /api/user/getUsers       | Get all users 
+GET      | /api/user/gerUser/:id    | Get a user with a paticular `id`
+POST     | /api/user/updateUser/:id | Update a user with a paticular `id`
+DELETE   | /api/user/deleteUser/:id | Delete a user with a paticular `id` 
  
  ## User
  
@@ -46,12 +52,13 @@ The API is for user database,  in which provides the user endpoint and also conn
  
 User api has the following endpoints:
 
-Method  | Endpoint | Description
---------| ------------- | -------------
-GET     | /api/user/getUsers  | Get all users 
-GET     | /api/user/gerUser/:id  | Get a user with a paticular `id`
-POST     | /api/user/updateUser/:id  | Update a user with a paticular `id`
-DELETE    | /api/user/deleteUser/:id | Delete a user with a paticular `id`  
+Method  | Endpoint                 | Description
+--------| ------------------------ | -------------
+POST    | /api/user/signup         | Create a user
+GET     | /api/user/getUsers       | Get all users 
+GET     | /api/user/gerUser/:id    | Get a user with a paticular `id`
+POST    | /api/user/updateUser/:id | Update a user with a paticular `id`
+DELETE  | /api/user/deleteUser/:id | Delete a user with a paticular `id`  
 
 ### User Object
 
@@ -59,7 +66,7 @@ DELETE    | /api/user/deleteUser/:id | Delete a user with a paticular `id`
 
 Attribuute  | Type | Description
 --------| ------------- | -------------
-id     |  integer | ID of the user
+id      |  integer | ID of the user
 firstname     | string  | Firstname of the user 
 lastname     | string  | Lastname of the user 
 username    | string | Username of the user
