@@ -175,7 +175,7 @@ const User = require('../middlewares/models').User;
             static async createUser(req, res){
                 
                     const { firstname, lastname, username, email, password, address, phone, role } = req.body
-        
+                    console.log(`signup`)
                     await User.findAll({
                         where: {email:email}
                     })
