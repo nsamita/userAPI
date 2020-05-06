@@ -12,9 +12,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(helmet());
 
-app.get('', (req, res) => res.status(200).send({
-    message: 'Welcome to the default userAPI route',
-  }));
+app.get('', (req, res) => res.status(200).send(
+     'Welcome to the default userAPI route'));
 
 let api = require('./routes/api');
 
