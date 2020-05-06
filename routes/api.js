@@ -15,7 +15,7 @@ router.post('/user/signup', userController.createUser);
 
 router.get('/user/getUsers', checkJWT, userController.getUsers);
 
-router.get('/user/getUser/:id', userController.getSingleUser);
+router.get('/user/getUser/:id',checkJwtUser, userController.getSingleUser);
 
 router.post('/user/updateUser/:id', checkJwtUser, userController.updateUser);
 
