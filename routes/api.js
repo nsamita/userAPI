@@ -13,7 +13,7 @@ router.post('/user/signup', userController.createUser);
 
 //router.post('/user/login', userController.login);
 
-router.get('/user/getUsers', checkJwt, userController.getUsers);
+router.get('/user/getUsers', checkJWT, userController.getUsers);
 
 router.get('/user/getUser/:id', userController.getSingleUser);
 
