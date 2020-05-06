@@ -30,6 +30,7 @@ module.exports = function(req, res, next) {
         });
       } 
       console.log(`decoded: %s`, decoded.role);
+      console.log(`decoded: %s`, decoded.id);
       if(decoded.role === undefined || decoded.role !== 'admin' || decoded.id === undefined){
         return res.status(403).json({
           success: false,
