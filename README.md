@@ -42,7 +42,7 @@ The API is for user database,  in which provides the user endpoint and also conn
  Method  | Endpoint                 | Description
 -------- | ------------------------ | -------------
 GET      | /api/user/getUsers       | Get all users 
-GET      | /api/user/gerUser/:id    | Get a user with a paticular `id`
+GET      | /api/user/getUser/:id    | Get a user with a paticular `id`
 POST     | /api/user/updateUser/:id | Update a user with a paticular `id`
 DELETE   | /api/user/deleteUser/:id | Delete a user with a paticular `id` 
  
@@ -56,7 +56,7 @@ Method  | Endpoint                 | Description
 --------| ------------------------ | -------------
 POST    | /api/user/signup         | Create a user
 GET     | /api/user/getUsers       | Get all users 
-GET     | /api/user/gerUser/:id    | Get a user with a paticular `id`
+GET     | /api/user/getUser/:id    | Get a user with a paticular `id`
 POST    | /api/user/updateUser/:id | Update a user with a paticular `id`
 DELETE  | /api/user/deleteUser/:id | Delete a user with a paticular `id`  
 
