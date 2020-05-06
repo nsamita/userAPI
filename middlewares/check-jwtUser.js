@@ -30,20 +30,16 @@ module.exports = function(req, res, next) {
         });
       } 
       console.log(`decoded: %s`, decoded.role);
-      
-      if(decoded.role === 'admin'){
+
+    if((decoded.role !== undefined || decoded.id === req.params.id || decoded.id !== undefined )  || (decoded.role === 'admin')){
         req.decoded = decoded;
         next();
-      }
-      else if(decoded.role === undefined || decoded.id !== req.params.id || decoded.id === undefined ){
-        return res.status(403).json({
-          success: false,
-          message: 'Forbidden'
-      });   
       }
       else {
-        req.decoded = decoded;
-        next();
+        return res.status(403).json({
+            success: false,
+            message: 'Forbidden'
+        });  
       }
     });
   } else {
