@@ -17,7 +17,7 @@ router.get('/user/getUsers', checkJWT, userController.getUsers);
 
 router.get('/user/getUser/:id', userController.getSingleUser);
 
-router.post('/user/updateUser/:id', checkJwtUser, userController.updateUser);
+router.patch('/user/updateUser/:id', checkJwtUser, userController.updateUser);
 
 router.delete('/user/deleteUser/:id', checkJwtUser, userController.deleteUserAccount);
 
